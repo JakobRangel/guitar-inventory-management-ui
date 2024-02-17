@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Search</title>
+</head>
+<body>
+    <label>Type:</label>
+    <input id="type" />
+    <button onclick="searchGuitars()">Search</button>
+    <br />
+
+    <table>
+        <thead>
+            <tr>
+                <th>Serial Number</th>
+                <th>Price</th>
+                <th>Builder</th>
+                <th>Model</th>
+                <th>Type</th>
+                <th>Back Wood</th>
+                <th>Top Wood</th>
+            </tr>
+        </thead>
+        <tbody id="searchResult">
+        </tbody>
+    </table>
+
+    <script>
+        let guitars = [
+            {serialNumber: "SN001", price: "100", builder: "Fender", model: "Stratocaster", type: "Electric", backWood: "Alder", topWood: "Maple"},
+            {serialNumber: "SN002", price: "200", builder: "Gibson", model: "ABC", type: "Electric", backWood: "Mahogany", topWood: "Maple"},
+            {serialNumber: "SN003", price: "300", builder: "Fender", model: "DEF", type: "Acoustic", backWood: "Rosewood", topWood: "Spruce"},
+            {serialNumber: "SN004", price: "400", builder: "Gibson", model: "GHI", type: "Acoustic", backWood: "Mahogany", topWood: "Spruce"},
+            {serialNumber: "SN005", price: "500", builder: "Fender", model: "JKL", type: "Acoustic", backWood: "Maple", topWood: "Spruce"}
+        ];
+
+        function searchGuitars() {
+            let guitarType = document.getElementById("type").value.toLowerCase(); // Convert input to lowercase
+            let table = document.getElementById("searchResult");
+            table.innerHTML = ""; // Clear existing results
+
+            for(let guitar of guitars) {
+                if(!guitarType || guitar.type.toLowerCase() === guitarType) { // Match by type
+                    let row = document.createElement("tr");
+                    Object.values(guitar).forEach(text => {
+                        let cell = document.createElement("td");
+                        cell.appendChild(document.createTextNode(text));
+                        row.appendChild(cell);
+                    });
+                    table.appendChild(row);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

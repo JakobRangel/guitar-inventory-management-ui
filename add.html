@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Serial Number:</label>
+    <input id="serialNumber"/>
+    <br>
+    <label>Price:</label>
+    <input id="price" />
+    <br>
+    <label>Builder:</label>
+    <input id="builder" />
+    <br>
+    <label>Model:</label>
+    <input id="model" />
+    <br>
+    <label>Type:</label>
+    <input id="type" />
+    <br>
+    <label>Back Wood:</label>
+    <input id="backWood" />
+    <br>
+    <label>Top Wood:</label>
+    <input id="topWood" />
+    <br>
+    <button onclick="addTheGuitar()">Add the Guitar</button>
+
+    <script>
+        function addTheGuitar() {
+           let guitarSerialNumber = document.getElementById("serialNumber").value;
+           let guitarPrice = document.getElementById("price").value;
+           let guitarBuilder = document.getElementById("builder").value;
+           let guitarModel = document.getElementById("model").value;
+           let guitarType = document.getElementById("type").value;
+           let guitarBackWood = document.getElementById("backWood").value;
+           let guitarTopWood = document.getElementById("topWood").value;
+
+           let duck = {serialNumber: guitarSerialNumber, price: guitarPrice, builder: guitarBuilder, model: guitarModel, type: guitarType, backWood: guitarBackWood, topWood: guitarTopWood};
+           alert("You entered: " + JSON.stringify(duck));
+        }
+    </script>
+
+</body>
+</html>
