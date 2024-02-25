@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Guitar to Database</title>
 </head>
 <body>
     <label>Serial Number:</label>
@@ -30,7 +30,10 @@
     <button onclick="addTheGuitar()">Add the Guitar</button>
 
     <script>
-        function addTheGuitar() {
+        let host = "http://localhost:8080";
+        async function addTheGuitar() {
+            let message = "";
+
            let guitarSerialNumber = document.getElementById("serialNumber").value;
            let guitarPrice = document.getElementById("price").value;
            let guitarBuilder = document.getElementById("builder").value;
@@ -39,8 +42,26 @@
            let guitarBackWood = document.getElementById("backWood").value;
            let guitarTopWood = document.getElementById("topWood").value;
 
-           let duck = {serialNumber: guitarSerialNumber, price: guitarPrice, builder: guitarBuilder, model: guitarModel, type: guitarType, backWood: guitarBackWood, topWood: guitarTopWood};
-           alert("You entered: " + JSON.stringify(duck));
+
+
+
+           let guitar = {serialNumber: guitarSerialNumber, price: guitarPrice, builder: guitarBuilder, model: guitarModel, type: guitarType, backWood: guitarBackWood, topWood: guitarTopWood};
+           //alert("You entered: " + JSON.stringify(guitar));
+
+           let request = {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(guitar)
+           };
+           let response = await fetch(host + "/add", request);
+           if(response.status == 200) {
+            message = "The guitar was added to the system";
+           } else {
+            message = "Something went wrong. Please try again or contact the customer support team"
+           }
+           alert(message);
         }
     </script>
 

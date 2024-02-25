@@ -28,15 +28,22 @@
     </table>
 
     <script>
-        let guitars = [
-            {serialNumber: "SN001", price: "100", builder: "Fender", model: "Stratocaster", type: "Electric", backWood: "Alder", topWood: "Maple"},
-            {serialNumber: "SN002", price: "200", builder: "Gibson", model: "ABC", type: "Electric", backWood: "Mahogany", topWood: "Maple"},
-            {serialNumber: "SN003", price: "300", builder: "Fender", model: "DEF", type: "Acoustic", backWood: "Rosewood", topWood: "Spruce"},
-            {serialNumber: "SN004", price: "400", builder: "Gibson", model: "GHI", type: "Acoustic", backWood: "Mahogany", topWood: "Spruce"},
-            {serialNumber: "SN005", price: "500", builder: "Fender", model: "JKL", type: "Acoustic", backWood: "Maple", topWood: "Spruce"}
-        ];
+        let guitars = [];
+        let host = "http://localhost:8080";
 
-        function searchGuitars() {
+        async function getAll() {       
+        return fetch(host + "/getall")
+        .then(response => response.json())
+        .catch(error => {
+          console.log(error);
+          alert("Something went wrong!");
+          return [];
+        });        
+      }
+        async function searchGuitars() {
+            if(guitars.length == 0) {
+            guitars = await getAll();
+           }
             let guitarType = document.getElementById("type").value.toLowerCase(); // Convert input to lowercase
             let table = document.getElementById("searchResult");
             table.innerHTML = ""; // Clear existing results
