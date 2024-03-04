@@ -70,7 +70,7 @@
         table.innerHTML = ""; // Clear existing results
 
         for(let guitar of guitars) {
-            if(
+            if(//
                 (!searchParams.serialNumber || guitar.serialNumber.toLowerCase().includes(searchParams.serialNumber)) &&
                 (!searchParams.price || guitar.price == searchParams.price) &&
                 (!searchParams.builder || guitar.builder.toLowerCase().includes(searchParams.builder)) &&
